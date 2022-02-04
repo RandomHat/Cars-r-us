@@ -1,9 +1,13 @@
 package kea.sem3.jwtdemo.entity;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.time.LocalDateTime;
 
 @Entity
 @DiscriminatorValue("MEMBER")
@@ -29,6 +33,15 @@ public class Member extends BaseUser {
 
     @Column(name = "anciennitet")
     int ranking;
+
+    @Column(name = "oprettet")
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+
+    @Column(name = "rettet")
+    @UpdateTimestamp
+    private LocalDateTime dateEdited;
+
 
     public Member(){}
 
