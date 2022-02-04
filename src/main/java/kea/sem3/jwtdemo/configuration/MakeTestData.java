@@ -8,9 +8,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 
-import java.time.LocalDate;
-import java.time.Month;
-
 @Controller
 @Profile("!test")
 public class MakeTestData implements ApplicationRunner {
@@ -38,10 +35,6 @@ public class MakeTestData implements ApplicationRunner {
         userRepository.save(admin);
         userRepository.save(both);
 
-        Member m1 = new Member("xxx", "x@x.dk", "test12", "lars", "hansen");
-        m1.addRole(Role.USER);
-        memberRepository.save(m1);
-
         System.out.println("########################################################################################");
         System.out.println("########################################################################################");
         System.out.println("#################################### WARNING ! #########################################");
@@ -54,13 +47,19 @@ public class MakeTestData implements ApplicationRunner {
 
     }
 
+    public void makeMembers(){
+        Member m1 = new Member("xxx", "x@x.dk", "test12", "lars", "hansen", "vejnavn", "by", "2200", false, 0);
+        m1.addRole(Role.USER);
+        memberRepository.save(m1);
+    }
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
         userRepository.deleteAll();
 
         makePlainUsers();
-
-
+        makeMembers();
     }
 }

@@ -9,25 +9,31 @@ import javax.persistence.Entity;
 @DiscriminatorValue("MEMBER")
 public class Member extends BaseUser {
 
-    @Column(name = "fornavn")
     String firstName;
 
-    @Column(name = "efternavn")
     String lastName;
 
-    /*
     String street;
+
     String city;
-    int zip;
+
+    String zipCode;
+
     boolean approved;
+
     int ranking;
-     */
 
     public Member(){}
 
-    public Member(String username, String email, String password, String firstName, String lastName) {
+    public Member(String username, String email, String password, String firstName, String lastName,
+                  String street, String city, String zipCode, boolean approved, int ranking) {
         super(username, email, password);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.approved = approved;
+        this.ranking = ranking;
     }
 }

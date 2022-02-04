@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -16,12 +19,13 @@ class MemberRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        memberRepository.save(new Member("xxx", "xxx@a.dk", "test12", "xxx","yyy"));
-        memberRepository.save(new Member("xx1", "xx1@a.dk", "test12", "xx1", "yyY"));
+        for (int i = 0; i < 3; i++) {
+            memberRepository.save(new Member("member" + i, "x" + i + "@x.dk", "test12", "lars", "hansen", "vejnavn", "by", "2200", false, 0));
+        }
     }
 
     @Test
     void testCount(){
-        assertEquals(2, memberRepository.count());
+        assertEquals(3, memberRepository.count());
     }
 }
