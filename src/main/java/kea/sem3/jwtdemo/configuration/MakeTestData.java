@@ -1,6 +1,7 @@
 package kea.sem3.jwtdemo.configuration;
 
 import kea.sem3.jwtdemo.entity.*;
+import kea.sem3.jwtdemo.repositories.MemberRepository;
 import kea.sem3.jwtdemo.security.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,9 +17,11 @@ public class MakeTestData implements ApplicationRunner {
 
 
     UserRepository userRepository;
+    MemberRepository memberRepository;
 
-    public MakeTestData(UserRepository userRepository) {
+    public MakeTestData(UserRepository userRepository, MemberRepository memberRepository) {
         this.userRepository = userRepository;
+        this.memberRepository = memberRepository;
     }
 
     public  void makePlainUsers(){
@@ -34,6 +37,10 @@ public class MakeTestData implements ApplicationRunner {
         userRepository.save(user);
         userRepository.save(admin);
         userRepository.save(both);
+
+        Member m1 = new Member("xxx", "x@x.dk", "test12", "lars", "hansen");
+        m1.addRole(Role.USER);
+        memberRepository.save(m1);
 
         System.out.println("########################################################################################");
         System.out.println("########################################################################################");
