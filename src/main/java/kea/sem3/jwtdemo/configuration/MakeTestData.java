@@ -57,7 +57,7 @@ public class MakeTestData implements ApplicationRunner {
     }
 
     public void makeCars(){
-        Car c1 = new Car("Opel", "Corsa", 2.5);
+        Car c1 = new Car("Opel", "Corsa", 2.5, 0.25);
         carRepository.save(c1);
     }
 

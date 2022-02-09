@@ -1,6 +1,7 @@
 package kea.sem3.jwtdemo.repositories;
 
 import kea.sem3.jwtdemo.entity.Car;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,10 @@ class CarRepositoryTest {
     @Autowired
     CarRepository carRepository;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp(@Autowired CarRepository carRepository) {
         for(int i = 0; i<3; i++){
-            carRepository.save(new Car("car" + i, "mærke", i));
+            carRepository.save(new Car("car" + i, "mærke", i, 0.25));
         }
     }
 
