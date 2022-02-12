@@ -17,6 +17,7 @@ class CarRepositoryTest {
 
     @BeforeAll
     static void setUp(@Autowired CarRepository carRepository) {
+        carRepository.deleteAll();
         for(int i = 0; i<3; i++){
             carRepository.save(new Car("car" + i, "mærke", i, 0.25));
         }
